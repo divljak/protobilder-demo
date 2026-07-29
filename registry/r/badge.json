@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "badge",
+  "type": "registry:ui",
+  "title": "Badge",
+  "description": "Shared by 3 of 4 projects — the team's converged system.",
+  "dependencies": [
+    "class-variance-authority@0.7.1"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "components/ui/badge.tsx",
+      "type": "registry:ui",
+      "target": "components/ui/badge.tsx",
+      "content": "import * as React from \"react\";\nimport { cva, type VariantProps } from \"class-variance-authority\";\nimport { cn } from \"@/lib/utils\";\n\n// Badge — status in a glance. Semantic variants map to the semantic tokens, which stay\n// distinct from the brand on purpose: meaning must not ride on the accent color.\nconst badgeVariants = cva(\n  \"inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium\",\n  {\n    variants: {\n      variant: {\n        default: \"border border-border bg-muted text-muted-foreground\",\n        brand: \"bg-brand text-brand-foreground\",\n        success: \"bg-success-muted text-success\",\n        warning: \"bg-warning-muted text-warning\",\n        danger: \"bg-danger-muted text-danger\",\n      },\n    },\n    defaultVariants: { variant: \"default\" },\n  }\n);\n\nexport interface BadgeProps\n  extends React.HTMLAttributes<HTMLSpanElement>,\n    VariantProps<typeof badgeVariants> {}\n\nexport function Badge({ className, variant, ...props }: BadgeProps) {\n  return <span className={cn(badgeVariants({ variant }), className)} {...props} />;\n}\n\nexport { badgeVariants };\n"
+    }
+  ]
+}

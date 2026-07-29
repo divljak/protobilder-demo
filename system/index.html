@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Design system · Prototypes</title>
+<style>
+  :root{--page:#fbfbfc;--panel:#fff;--ink:#16161a;--ink2:#6c6c78;--line:#e8e8ee;--soft:#f3f3f7;
+        --ok-bg:#e7f6ec;--ok-fg:#14532d;--bad-bg:#fdeaea;--bad-fg:#7f1d1d;
+        --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+        --font:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color-scheme:light}
+  @media (prefers-color-scheme:dark){:root{--page:#0c0c0f;--panel:#151519;--ink:#f2f2f5;--ink2:#9a9aa6;
+        --line:#26262d;--soft:#1c1c22;--ok-bg:#12301f;--ok-fg:#7ee2a8;--bad-bg:#3a1616;--bad-fg:#ffb4b4;color-scheme:dark}}
+  :root[data-theme="light"]{--page:#fbfbfc;--panel:#fff;--ink:#16161a;--ink2:#6c6c78;--line:#e8e8ee;--soft:#f3f3f7;color-scheme:light}
+  :root[data-theme="dark"]{--page:#0c0c0f;--panel:#151519;--ink:#f2f2f5;--ink2:#9a9aa6;--line:#26262d;--soft:#1c1c22;color-scheme:dark}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--page);color:var(--ink);font-family:var(--font);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1180px;margin:0 auto;padding:40px 24px 72px}
+  a{color:inherit}
+  h1{font-size:1.6rem;letter-spacing:-.02em;margin:0}
+  .pill{font-size:10px;font-weight:600;letter-spacing:.03em;text-transform:uppercase;
+    padding:2px 7px;border-radius:99px;background:var(--soft);color:var(--ink2);white-space:nowrap}
+  .pill.ok{background:var(--ok-bg);color:var(--ok-fg)} .pill.bad{background:var(--bad-bg);color:var(--bad-fg)}
+  .mono{font-family:var(--mono)}
+  footer{margin-top:44px;padding-top:18px;border-top:1px solid var(--line);color:var(--ink2);font-size:12.5px}
+  code{font-family:var(--mono);font-size:.9em;background:var(--soft);padding:1px 5px;border-radius:4px}
+
+  .back{display:inline-block;font-size:12.5px;color:var(--ink2);text-decoration:none;margin-bottom:18px}
+  .back:hover{color:var(--ink)}
+  .sub{color:var(--ink2);font-size:.92rem;margin:6px 0 26px;max-width:64ch}
+  section{margin-bottom:34px}
+  h2{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink2);margin:0 0 12px;font-weight:600}
+  .brands{display:grid;grid-template-columns:repeat(auto-fill,minmax(132px,1fr));gap:12px}
+  .brand{background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+  .brand .sw{height:56px}
+  .brand .b{padding:9px 11px}
+  .brand .n{font-size:12.5px;font-weight:600}
+  .brand .v{font-family:var(--mono);font-size:10.5px;color:var(--ink2)}
+  .brand .o{font-size:11px;color:var(--ink2);margin-top:2px}
+  .callout{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--ink);
+    border-radius:10px;padding:13px 15px;font-size:13.5px;margin-bottom:14px}
+  .callout b{font-weight:600}
+  .tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--panel)}
+  table{border-collapse:collapse;width:100%;font-size:13px}
+  th,td{padding:9px 12px;text-align:left;border-top:1px solid var(--line);white-space:nowrap}
+  thead th{border-top:0;font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink2);font-weight:600}
+  tbody th{font-weight:500}
+  td.c{text-align:center}
+  .yes{display:inline-block;width:9px;height:9px;border-radius:99px}
+  .no{color:var(--line)}
+  .cov{font-family:var(--mono);font-size:11.5px;color:var(--ink2)}
+  .row-all{background:color-mix(in srgb, var(--ok-bg) 45%, transparent)}
+  .warn{color:var(--bad-fg);background:var(--bad-bg);border-radius:5px;padding:1px 6px;font-size:11.5px}
+  .own-tag{color:var(--ink2);background:var(--soft);border-radius:5px;padding:1px 6px;font-size:11px}
+  .yes.own{background:transparent}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="/protobilder-demo/">← All prototypes</a>
+  <h1>Design system across the team</h1>
+  <p class="sub">What the team's projects actually share, computed from their contracts —
+  not a style guide anyone has to keep up to date. Where these diverge, it's because
+  someone chose differently, which is worth seeing.</p>
+
+  <section>
+    <h2>Brands · 4 distinct across 6 prototypes</h2>
+    <div class="brands">
+      <div class="brand">
+        <div class="sw" style="background:#4338ca"></div>
+        <div class="b"><div class="n">fieldnote</div><div class="v">#4338ca</div>
+        <div class="o">Ogi</div></div>
+      </div>
+      <div class="brand">
+        <div class="sw" style="background:#0f766e"></div>
+        <div class="b"><div class="n">harvest-demo</div><div class="v">#0f766e</div>
+        <div class="o">Mia</div></div>
+      </div>
+      <div class="brand">
+        <div class="sw" style="background:#000000"></div>
+        <div class="b"><div class="n">kanban</div><div class="v">#000000</div>
+        <div class="o">Ogi</div></div>
+      </div>
+      <div class="brand">
+        <div class="sw" style="background:#2563eb"></div>
+        <div class="b"><div class="n">quickstart</div><div class="v">#2563eb</div>
+        <div class="o">Rae</div></div>
+      </div>
+      <div class="brand">
+        <div class="sw" style="background:#2563eb"></div>
+        <div class="b"><div class="n">variants-demo</div><div class="v">#2563eb</div>
+        <div class="o">unassigned</div></div>
+      </div>
+      <div class="brand">
+        <div class="sw" style="background:#2563eb"></div>
+        <div class="b"><div class="n">walking-skeleton</div><div class="v">#2563eb</div>
+        <div class="o">Ogi</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Component coverage</h2>
+    <div class="callout">No component ships in every prototype yet — the shared system is still forming.</div>
+    <div class="callout"><code>card</code> is <b>local by choice</b> in
+         harvest-demo — declared in the manifest, so it counts as a
+         decision rather than drift, and the registry publishes the shared copies anyway.</div>
+    
+    <div class="tablewrap"><table>
+        <thead><tr><th>component</th><th class="c" title="fieldnote">F</th><th class="c" title="harvest-demo">HD</th><th class="c" title="kanban">K</th><th class="c" title="quickstart">Q</th><th class="c" title="variants-demo">VD</th><th class="c" title="walking-skeleton">WS</th><th>shared</th></tr></thead>
+        <tbody>
+        <tr>
+          <th>card <span class="own-tag">local in harvest-demo</span></th><td class="c"><span class="yes" style="background:#4338ca" title="fieldnote"></span></td><td class="c"><span class="yes own" style="box-shadow:inset 0 0 0 2px #0f766e" title="harvest-demo — local by choice"></span></td><td class="c"><span class="yes" style="background:#000000" title="kanban"></span></td><td class="c no">·</td><td class="c no">·</td><td class="c"><span class="yes" style="background:#2563eb" title="walking-skeleton"></span></td><td class="cov">4/6</td>
+        </tr>
+        <tr>
+          <th>badge</th><td class="c"><span class="yes" style="background:#4338ca" title="fieldnote"></span></td><td class="c no">·</td><td class="c"><span class="yes" style="background:#000000" title="kanban"></span></td><td class="c no">·</td><td class="c no">·</td><td class="c"><span class="yes" style="background:#2563eb" title="walking-skeleton"></span></td><td class="cov">3/6</td>
+        </tr>
+        <tr>
+          <th>button</th><td class="c"><span class="yes" style="background:#4338ca" title="fieldnote"></span></td><td class="c no">·</td><td class="c"><span class="yes" style="background:#000000" title="kanban"></span></td><td class="c no">·</td><td class="c no">·</td><td class="c"><span class="yes" style="background:#2563eb" title="walking-skeleton"></span></td><td class="cov">3/6</td>
+        </tr>
+        <tr>
+          <th>checkbox</th><td class="c"><span class="yes" style="background:#4338ca" title="fieldnote"></span></td><td class="c no">·</td><td class="c"><span class="yes" style="background:#000000" title="kanban"></span></td><td class="c no">·</td><td class="c no">·</td><td class="c"><span class="yes" style="background:#2563eb" title="walking-skeleton"></span></td><td class="cov">3/6</td>
+        </tr>
+        <tr>
+          <th>dialog</th><td class="c"><span class="yes" style="background:#4338ca" title="fieldnote"></span></td><td class="c no">·</td><td class="c"><span class="yes" style="background:#000000" title="kanban"></span></td><td class="c no">·</td><td class="c no">·</td><td class="c"><span class="yes" style="background:#2563eb" title="walking-skeleton"></span></td><td class="cov">3/6</td>
+        </tr>
+        <tr>
+          <th>input</th><td class="c"><span class="yes" style="background:#4338ca" title="fieldnote"></span></td><td class="c no">·</td><td class="c"><span class="yes" style="background:#000000" title="kanban"></span></td><td class="c no">·</td><td class="c no">·</td><td class="c"><span class="yes" style="background:#2563eb" title="walking-skeleton"></span></td><td class="cov">3/6</td>
+        </tr>
+        <tr>
+          <th>label</th><td class="c"><span class="yes" style="background:#4338ca" title="fieldnote"></span></td><td class="c no">·</td><td class="c"><span class="yes" style="background:#000000" title="kanban"></span></td><td class="c no">·</td><td class="c no">·</td><td class="c"><span class="yes" style="background:#2563eb" title="walking-skeleton"></span></td><td class="cov">3/6</td>
+        </tr>
+        <tr>
+          <th>radio-group</th><td class="c"><span class="yes" style="background:#4338ca" title="fieldnote"></span></td><td class="c no">·</td><td class="c"><span class="yes" style="background:#000000" title="kanban"></span></td><td class="c no">·</td><td class="c no">·</td><td class="c"><span class="yes" style="background:#2563eb" title="walking-skeleton"></span></td><td class="cov">3/6</td>
+        </tr>
+        <tr>
+          <th>select</th><td class="c"><span class="yes" style="background:#4338ca" title="fieldnote"></span></td><td class="c no">·</td><td class="c"><span class="yes" style="background:#000000" title="kanban"></span></td><td class="c no">·</td><td class="c no">·</td><td class="c"><span class="yes" style="background:#2563eb" title="walking-skeleton"></span></td><td class="cov">3/6</td>
+        </tr>
+        <tr>
+          <th>separator</th><td class="c"><span class="yes" style="background:#4338ca" title="fieldnote"></span></td><td class="c no">·</td><td class="c"><span class="yes" style="background:#000000" title="kanban"></span></td><td class="c no">·</td><td class="c no">·</td><td class="c"><span class="yes" style="background:#2563eb" title="walking-skeleton"></span></td><td class="cov">3/6</td>
+        </tr>
+        <tr>
+          <th>switch</th><td class="c"><span class="yes" style="background:#4338ca" title="fieldnote"></span></td><td class="c no">·</td><td class="c"><span class="yes" style="background:#000000" title="kanban"></span></td><td class="c no">·</td><td class="c no">·</td><td class="c"><span class="yes" style="background:#2563eb" title="walking-skeleton"></span></td><td class="cov">3/6</td>
+        </tr>
+        <tr>
+          <th>tabs</th><td class="c"><span class="yes" style="background:#4338ca" title="fieldnote"></span></td><td class="c no">·</td><td class="c"><span class="yes" style="background:#000000" title="kanban"></span></td><td class="c no">·</td><td class="c no">·</td><td class="c"><span class="yes" style="background:#2563eb" title="walking-skeleton"></span></td><td class="cov">3/6</td>
+        </tr>
+        <tr>
+          <th>textarea</th><td class="c"><span class="yes" style="background:#4338ca" title="fieldnote"></span></td><td class="c no">·</td><td class="c"><span class="yes" style="background:#000000" title="kanban"></span></td><td class="c no">·</td><td class="c no">·</td><td class="c"><span class="yes" style="background:#2563eb" title="walking-skeleton"></span></td><td class="cov">3/6</td>
+        </tr>
+        <tr>
+          <th>tooltip</th><td class="c"><span class="yes" style="background:#4338ca" title="fieldnote"></span></td><td class="c no">·</td><td class="c"><span class="yes" style="background:#000000" title="kanban"></span></td><td class="c no">·</td><td class="c no">·</td><td class="c"><span class="yes" style="background:#2563eb" title="walking-skeleton"></span></td><td class="cov">3/6</td>
+        </tr>
+        </tbody></table></div>
+  </section>
+
+  <section>
+    <h2>Scales</h2>
+    <div class="callout">Every project shares one radius base and one type ratio.</div>
+    <div class="callout">1 project has no dark theme — re-run <code>/kit-theme</code> to generate one.</div>
+    <div class="tablewrap"><table>
+      <thead><tr><th>project</th><th>radius</th><th>type ratio</th><th>spacing</th><th>dark</th></tr></thead>
+      <tbody>
+        <tr><th>fieldnote</th>
+          <td>0.75rem</td>
+          <td>1.2</td>
+          <td>0.25rem</td>
+          <td>yes</td></tr>
+        <tr><th>harvest-demo</th>
+          <td>0.75rem</td>
+          <td>1.2</td>
+          <td>0.25rem</td>
+          <td>yes</td></tr>
+        <tr><th>kanban</th>
+          <td>0.75rem</td>
+          <td>1.2</td>
+          <td>0.25rem</td>
+          <td>yes</td></tr>
+        <tr><th>quickstart</th>
+          <td>0.75rem</td>
+          <td>1.2</td>
+          <td>0.25rem</td>
+          <td>yes</td></tr>
+        <tr><th>variants-demo</th>
+          <td>—</td>
+          <td>—</td>
+          <td>—</td>
+          <td><span class="warn">no</span></td></tr>
+        <tr><th>walking-skeleton</th>
+          <td>0.75rem</td>
+          <td>1.2</td>
+          <td>0.25rem</td>
+          <td>yes</td></tr>
+      </tbody></table></div>
+  </section>
+
+  <footer>Computed from each project's token source and <code>components/ui</code>.
+  A view, never a source — change a contract to change what this says.</footer>
+</div>
+</body>
+</html>

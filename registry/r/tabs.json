@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "tabs",
+  "type": "registry:ui",
+  "title": "Tabs",
+  "description": "Shared by 3 of 4 projects — the team's converged system.",
+  "dependencies": [
+    "@base-ui-components/react@1.0.0-rc.0"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "components/ui/tabs.tsx",
+      "type": "registry:ui",
+      "target": "components/ui/tabs.tsx",
+      "content": "\"use client\";\nimport * as React from \"react\";\nimport { Tabs as BaseTabs } from \"@base-ui-components/react/tabs\";\nimport { cn } from \"@/lib/utils\";\n\n// shadcn-style Tabs on the Base UI primitive. Colors are theme tokens only.\nexport const Tabs = BaseTabs.Root;\n\nexport function TabsList({ className, ...props }: React.ComponentProps<typeof BaseTabs.List>) {\n  return (\n    <BaseTabs.List\n      className={cn(\"inline-flex items-center gap-1 rounded-md bg-muted p-1\", className)}\n      {...props}\n    />\n  );\n}\n\nexport function TabsTab({ className, ...props }: React.ComponentProps<typeof BaseTabs.Tab>) {\n  return (\n    <BaseTabs.Tab\n      className={cn(\n        \"rounded-sm px-3 py-1.5 text-sm font-medium text-muted-foreground transition-colors\",\n        \"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand\",\n        \"data-[selected]:bg-background data-[selected]:text-foreground data-[selected]:shadow-sm\",\n        className\n      )}\n      {...props}\n    />\n  );\n}\n\nexport function TabsPanel({ className, ...props }: React.ComponentProps<typeof BaseTabs.Panel>) {\n  return <BaseTabs.Panel className={cn(\"mt-3 text-sm text-foreground\", className)} {...props} />;\n}\n"
+    }
+  ]
+}

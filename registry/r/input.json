@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "input",
+  "type": "registry:ui",
+  "title": "Input",
+  "description": "Shared by 3 of 4 projects — the team's converged system.",
+  "dependencies": [
+    "@base-ui-components/react@1.0.0-rc.0"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "components/ui/input.tsx",
+      "type": "registry:ui",
+      "target": "components/ui/input.tsx",
+      "content": "import * as React from \"react\";\nimport { Input as BaseInput } from \"@base-ui-components/react/input\";\nimport { cn } from \"@/lib/utils\";\n\n// shadcn-style Input on the Base UI primitive. Every color is a theme token\n// (audit: tokens-only); no @radix import (audit: no-raw-radix).\nexport function Input({ className, ...props }: React.ComponentProps<typeof BaseInput>) {\n  return (\n    <BaseInput\n      className={cn(\n        \"h-9 w-full rounded-md border border-border bg-background px-3 py-1 text-sm text-foreground\",\n        \"placeholder:text-muted-foreground\",\n        \"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand\",\n        \"disabled:cursor-not-allowed disabled:opacity-50\",\n        \"data-[invalid]:border-danger data-[invalid]:focus-visible:ring-danger\",\n        className\n      )}\n      {...props}\n    />\n  );\n}\n"
+    }
+  ]
+}

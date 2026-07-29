@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "checkbox",
+  "type": "registry:ui",
+  "title": "Checkbox",
+  "description": "Shared by 3 of 4 projects — the team's converged system.",
+  "dependencies": [
+    "@base-ui-components/react@1.0.0-rc.0"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "components/ui/checkbox.tsx",
+      "type": "registry:ui",
+      "target": "components/ui/checkbox.tsx",
+      "content": "\"use client\";\nimport * as React from \"react\";\nimport { Checkbox as BaseCheckbox } from \"@base-ui-components/react/checkbox\";\nimport { cn } from \"@/lib/utils\";\n\n// shadcn-style Checkbox on the Base UI primitive. Colors are theme tokens only.\nexport function Checkbox({ className, ...props }: React.ComponentProps<typeof BaseCheckbox.Root>) {\n  return (\n    <BaseCheckbox.Root\n      className={cn(\n        \"flex h-4 w-4 shrink-0 items-center justify-center rounded-sm border border-border bg-background\",\n        \"transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand\",\n        \"data-[checked]:border-brand data-[checked]:bg-brand\",\n        \"disabled:cursor-not-allowed disabled:opacity-50\",\n        className\n      )}\n      {...props}\n    >\n      <BaseCheckbox.Indicator className=\"flex text-brand-foreground\">\n        <svg viewBox=\"0 0 12 12\" className=\"h-3 w-3\" fill=\"none\" aria-hidden=\"true\">\n          <path d=\"M2.5 6.5 5 9l4.5-5\" stroke=\"currentColor\" strokeWidth=\"1.8\" strokeLinecap=\"round\" strokeLinejoin=\"round\" />\n        </svg>\n      </BaseCheckbox.Indicator>\n    </BaseCheckbox.Root>\n  );\n}\n"
+    }
+  ]
+}

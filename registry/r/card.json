@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "card",
+  "type": "registry:ui",
+  "title": "Card",
+  "description": "Shared by 3 of 4 projects — the team's converged system.",
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "components/ui/card.tsx",
+      "type": "registry:ui",
+      "target": "components/ui/card.tsx",
+      "content": "import * as React from \"react\";\nimport { cn } from \"@/lib/utils\";\n\n// Card — the surface every grouped view sits on. Plain elements; colors are theme\n// tokens only (audit: tokens-only). Radius comes from --radius-card.\nexport function Card({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {\n  return (\n    <div\n      className={cn(\"rounded-[var(--radius-card)] border border-border bg-background\", className)}\n      {...props}\n    />\n  );\n}\n\nexport function CardHeader({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {\n  return <div className={cn(\"flex flex-col gap-1 p-5 pb-0\", className)} {...props} />;\n}\n\nexport function CardTitle({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) {\n  return <h3 className={cn(\"text-base font-semibold text-foreground\", className)} {...props} />;\n}\n\nexport function CardDescription({ className, ...props }: React.HTMLAttributes<HTMLParagraphElement>) {\n  return <p className={cn(\"text-sm text-muted-foreground\", className)} {...props} />;\n}\n\nexport function CardContent({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {\n  return <div className={cn(\"p-5\", className)} {...props} />;\n}\n\nexport function CardFooter({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {\n  return <div className={cn(\"flex items-center gap-2 p-5 pt-0\", className)} {...props} />;\n}\n"
+    }
+  ]
+}

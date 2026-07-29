@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "textarea",
+  "type": "registry:ui",
+  "title": "Textarea",
+  "description": "Shared by 3 of 4 projects — the team's converged system.",
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "components/ui/textarea.tsx",
+      "type": "registry:ui",
+      "target": "components/ui/textarea.tsx",
+      "content": "import * as React from \"react\";\nimport { cn } from \"@/lib/utils\";\n\n// Textarea — a styled native element (Base UI ships no textarea primitive; a native\n// one is already accessible). Colors are theme tokens only (audit: tokens-only).\nexport function Textarea({ className, ...props }: React.TextareaHTMLAttributes<HTMLTextAreaElement>) {\n  return (\n    <textarea\n      className={cn(\n        \"min-h-20 w-full rounded-md border border-border bg-background px-3 py-2 text-sm text-foreground\",\n        \"placeholder:text-muted-foreground\",\n        \"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand\",\n        \"disabled:cursor-not-allowed disabled:opacity-50\",\n        className\n      )}\n      {...props}\n    />\n  );\n}\n"
+    }
+  ]
+}

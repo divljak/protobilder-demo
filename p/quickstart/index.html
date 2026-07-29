@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>quickstart · Prototypes</title>
+<style>
+  :root{--page:#fbfbfc;--panel:#fff;--ink:#16161a;--ink2:#6c6c78;--line:#e8e8ee;--soft:#f3f3f7;
+        --ok-bg:#e7f6ec;--ok-fg:#14532d;--bad-bg:#fdeaea;--bad-fg:#7f1d1d;
+        --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+        --font:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color-scheme:light}
+  @media (prefers-color-scheme:dark){:root{--page:#0c0c0f;--panel:#151519;--ink:#f2f2f5;--ink2:#9a9aa6;
+        --line:#26262d;--soft:#1c1c22;--ok-bg:#12301f;--ok-fg:#7ee2a8;--bad-bg:#3a1616;--bad-fg:#ffb4b4;color-scheme:dark}}
+  :root[data-theme="light"]{--page:#fbfbfc;--panel:#fff;--ink:#16161a;--ink2:#6c6c78;--line:#e8e8ee;--soft:#f3f3f7;color-scheme:light}
+  :root[data-theme="dark"]{--page:#0c0c0f;--panel:#151519;--ink:#f2f2f5;--ink2:#9a9aa6;--line:#26262d;--soft:#1c1c22;color-scheme:dark}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--page);color:var(--ink);font-family:var(--font);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1180px;margin:0 auto;padding:40px 24px 72px}
+  a{color:inherit}
+  h1{font-size:1.6rem;letter-spacing:-.02em;margin:0}
+  .pill{font-size:10px;font-weight:600;letter-spacing:.03em;text-transform:uppercase;
+    padding:2px 7px;border-radius:99px;background:var(--soft);color:var(--ink2);white-space:nowrap}
+  .pill.ok{background:var(--ok-bg);color:var(--ok-fg)} .pill.bad{background:var(--bad-bg);color:var(--bad-fg)}
+  .mono{font-family:var(--mono)}
+  footer{margin-top:44px;padding-top:18px;border-top:1px solid var(--line);color:var(--ink2);font-size:12.5px}
+  code{font-family:var(--mono);font-size:.9em;background:var(--soft);padding:1px 5px;border-radius:4px}
+
+  .back{display:inline-block;font-size:12.5px;color:var(--ink2);text-decoration:none;margin-bottom:18px}
+  .back:hover{color:var(--ink)}
+  .hero{display:flex;align-items:flex-start;gap:14px;flex-wrap:wrap;margin-bottom:6px}
+  .swatch{width:38px;height:38px;border-radius:10px;box-shadow:inset 0 0 0 1px rgba(128,128,128,.28)}
+  .facts{display:flex;gap:8px;flex-wrap:wrap;align-items:center;color:var(--ink2);font-size:13px;margin:6px 0 26px}
+  .cta{margin-left:auto;display:inline-flex;align-items:center;gap:7px;background:var(--ink);color:var(--page);
+    text-decoration:none;border-radius:9px;padding:9px 15px;font-size:13px;font-weight:500}
+  .cta.off{background:var(--soft);color:var(--ink2);cursor:default}
+  .preview{display:block;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--soft);
+    margin-bottom:30px;position:relative}
+  .preview img{display:block;width:100%;height:auto}
+  .preview .none{padding:56px;text-align:center;color:var(--ink2);font-size:13.5px}
+  section{margin-bottom:30px}
+  h2{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink2);margin:0 0 12px;font-weight:600}
+  .list{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--panel)}
+  .item{display:flex;align-items:center;gap:10px;padding:11px 14px;border-top:1px solid var(--line);font-size:13.5px}
+  .item:first-child{border-top:0}
+  .item .id{font-family:var(--mono);font-size:11px;color:var(--ink2);min-width:52px}
+  .item .t{font-weight:500}
+  .item .r{margin-left:auto;display:flex;align-items:center;gap:8px;color:var(--ink2);font-size:12px}
+  .swatches{display:grid;grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:10px}
+  .sw .chip{height:40px;border-radius:9px;box-shadow:inset 0 0 0 1px rgba(128,128,128,.22)}
+  .sw .n{font-size:11.5px;margin-top:5px} .sw .v{font-family:var(--mono);font-size:10px;color:var(--ink2)}
+  .none-line{color:var(--ink2);font-size:13px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="/protobilder-demo/">← All prototypes</a>
+  <div class="hero">
+    <div class="swatch" style="background:#2563eb"></div>
+    <div>
+      <h1>quickstart</h1>
+      <div class="facts">
+        <span>Rae</span><span>·</span><span>public</span>
+        <span>·</span><span>updated 2h ago</span><span class="pill ok">audited</span>
+      </div>
+    </div>
+    <span class="cta off">Not deployed</span>
+  </div>
+
+  <div class="preview"><div class="none">No deployed preview. Run it locally:<br><code>cd quickstart/prototype &amp;&amp; npm install &amp;&amp; npm run dev</code></div></div>
+
+  <section><h2>Features</h2><div class="list">
+      <div class="item"><span class="id">F-001</span><span class="t">Copy-to-clipboard API key field</span>
+        <span class="r">2 check · 1 review
+          <span class="pill ok">confirmed</span></span></div>
+    </div></section>
+  <section><h2>Decisions</h2><p class="none-line">No decisions recorded.</p></section>
+  <section><h2>Theme</h2><div class="swatches">
+      <div class="sw"><div class="chip" style="background:#fbfcfd"></div>
+        <div class="n">background</div><div class="v">#fbfcfd</div></div>
+      <div class="sw"><div class="chip" style="background:#19202e"></div>
+        <div class="n">foreground</div><div class="v">#19202e</div></div>
+      <div class="sw"><div class="chip" style="background:#2563eb"></div>
+        <div class="n">brand</div><div class="v">#2563eb</div></div>
+      <div class="sw"><div class="chip" style="background:#f1f3f8"></div>
+        <div class="n">muted</div><div class="v">#f1f3f8</div></div>
+      <div class="sw"><div class="chip" style="background:#58647e"></div>
+        <div class="n">muted-foreground</div><div class="v">#58647e</div></div>
+      <div class="sw"><div class="chip" style="background:#dbe0eb"></div>
+        <div class="n">border</div><div class="v">#dbe0eb</div></div>
+      <div class="sw"><div class="chip" style="background:#15803d"></div>
+        <div class="n">success</div><div class="v">#15803d</div></div>
+      <div class="sw"><div class="chip" style="background:#92400e"></div>
+        <div class="n">warning</div><div class="v">#92400e</div></div>
+      <div class="sw"><div class="chip" style="background:#b91c1c"></div>
+        <div class="n">danger</div><div class="v">#b91c1c</div></div>
+    </div></section>
+  <section><h2>Receipts</h2><div class="list">
+      <div class="item"><span class="pill ok">pass</span>
+        <span class="mono" style="font-size:11.5px">6f11ed205521</span>
+        <span class="r">3d ago</span></div>
+      <div class="item"><span class="pill ok">pass</span>
+        <span class="mono" style="font-size:11.5px">ad742dccd6ca</span>
+        <span class="r">3d ago</span></div>
+      <div class="item"><span class="pill ok">pass</span>
+        <span class="mono" style="font-size:11.5px">b7db7d217d69</span>
+        <span class="r">3d ago</span></div>
+      <div class="item"><span class="pill ok">pass</span>
+        <span class="mono" style="font-size:11.5px">0b5fab8c6ce2</span>
+        <span class="r">4d ago</span></div>
+      <div class="item"><span class="pill ok">pass</span>
+        <span class="mono" style="font-size:11.5px">4096af342433</span>
+        <span class="r">4d ago</span></div>
+      <div class="item"><span class="pill ok">pass</span>
+        <span class="mono" style="font-size:11.5px">b044b8cc3625</span>
+        <span class="r">4d ago</span></div>
+    </div></section>
+  <section><h2>Activity</h2><div class="list">
+      <div class="item"><span class="id">1817476</span><span class="t" style="font-weight:400">Gate 2: compress the product story and make Operator Home action-first (#5)</span>
+        <span class="r">Ognjen Divljak · 2h ago</span></div>
+      <div class="item"><span class="id">ce5b331</span><span class="t" style="font-weight:400">Address Codex review: criterion identity is feature-local</span>
+        <span class="r">Claude · 23h ago</span></div>
+      <div class="item"><span class="id">8834070</span><span class="t" style="font-weight:400">The judgment layer: reusable constraints, and evidence that a human looked</span>
+        <span class="r">Claude · 1d ago</span></div>
+      <div class="item"><span class="id">5594801</span><span class="t" style="font-weight:400">Give each example prototype its own package name</span>
+        <span class="r">Claude · 3d ago</span></div>
+      <div class="item"><span class="id">fd78288</span><span class="t" style="font-weight:400">Fix the front door: the template shipped with no dependencies</span>
+        <span class="r">Claude · 3d ago</span></div>
+      <div class="item"><span class="id">567b5da</span><span class="t" style="font-weight:400">Review pass: fix what shipped broken, and give the kit its own evidence</span>
+        <span class="r">Claude · 3d ago</span></div>
+    </div></section>
+
+  <footer>Generated from <code>quickstart</code>'s contract. To change what this page says,
+  change the contract — this is a view, never a source.</footer>
+</div>
+</body>
+</html>

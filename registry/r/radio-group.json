@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "radio-group",
+  "type": "registry:ui",
+  "title": "RadioGroup",
+  "description": "Shared by 3 of 4 projects — the team's converged system.",
+  "dependencies": [
+    "@base-ui-components/react@1.0.0-rc.0"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "components/ui/radio-group.tsx",
+      "type": "registry:ui",
+      "target": "components/ui/radio-group.tsx",
+      "content": "\"use client\";\nimport * as React from \"react\";\nimport { RadioGroup as BaseRadioGroup } from \"@base-ui-components/react/radio-group\";\nimport { Radio as BaseRadio } from \"@base-ui-components/react/radio\";\nimport { cn } from \"@/lib/utils\";\n\n// shadcn-style RadioGroup on the Base UI primitives. Colors are theme tokens only.\nexport function RadioGroup({ className, ...props }: React.ComponentProps<typeof BaseRadioGroup>) {\n  return <BaseRadioGroup className={cn(\"flex flex-col gap-2\", className)} {...props} />;\n}\n\nexport function Radio({ className, ...props }: React.ComponentProps<typeof BaseRadio.Root>) {\n  return (\n    <BaseRadio.Root\n      className={cn(\n        \"flex h-4 w-4 shrink-0 items-center justify-center rounded-full border border-border bg-background\",\n        \"transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand\",\n        \"data-[checked]:border-brand data-[checked]:bg-brand\",\n        \"disabled:cursor-not-allowed disabled:opacity-50\",\n        className\n      )}\n      {...props}\n    >\n      <BaseRadio.Indicator className=\"h-1.5 w-1.5 rounded-full bg-brand-foreground\" />\n    </BaseRadio.Root>\n  );\n}\n"
+    }
+  ]
+}

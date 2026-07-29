@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Prototypes</title>
+<style>
+  :root{--page:#fbfbfc;--panel:#fff;--ink:#16161a;--ink2:#6c6c78;--line:#e8e8ee;--soft:#f3f3f7;
+        --ok-bg:#e7f6ec;--ok-fg:#14532d;--bad-bg:#fdeaea;--bad-fg:#7f1d1d;
+        --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+        --font:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color-scheme:light}
+  @media (prefers-color-scheme:dark){:root{--page:#0c0c0f;--panel:#151519;--ink:#f2f2f5;--ink2:#9a9aa6;
+        --line:#26262d;--soft:#1c1c22;--ok-bg:#12301f;--ok-fg:#7ee2a8;--bad-bg:#3a1616;--bad-fg:#ffb4b4;color-scheme:dark}}
+  :root[data-theme="light"]{--page:#fbfbfc;--panel:#fff;--ink:#16161a;--ink2:#6c6c78;--line:#e8e8ee;--soft:#f3f3f7;color-scheme:light}
+  :root[data-theme="dark"]{--page:#0c0c0f;--panel:#151519;--ink:#f2f2f5;--ink2:#9a9aa6;--line:#26262d;--soft:#1c1c22;color-scheme:dark}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--page);color:var(--ink);font-family:var(--font);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1180px;margin:0 auto;padding:40px 24px 72px}
+  a{color:inherit}
+  h1{font-size:1.6rem;letter-spacing:-.02em;margin:0}
+  .pill{font-size:10px;font-weight:600;letter-spacing:.03em;text-transform:uppercase;
+    padding:2px 7px;border-radius:99px;background:var(--soft);color:var(--ink2);white-space:nowrap}
+  .pill.ok{background:var(--ok-bg);color:var(--ok-fg)} .pill.bad{background:var(--bad-bg);color:var(--bad-fg)}
+  .mono{font-family:var(--mono)}
+  footer{margin-top:44px;padding-top:18px;border-top:1px solid var(--line);color:var(--ink2);font-size:12.5px}
+  code{font-family:var(--mono);font-size:.9em;background:var(--soft);padding:1px 5px;border-radius:4px}
+
+  header{display:flex;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-bottom:6px}
+  .count{color:var(--ink2);font-size:.95rem}
+  .syslink{margin-left:auto;font-size:13px;text-decoration:none;color:var(--ink2);border:1px solid var(--line);
+    background:var(--panel);border-radius:99px;padding:7px 14px}
+  .syslink:hover{color:var(--ink);border-color:var(--ink2)}
+  .sub{color:var(--ink2);font-size:.92rem;margin:6px 0 22px;max-width:62ch}
+  .bar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:20px}
+  input[type=search]{flex:1;min-width:200px;max-width:320px;background:var(--panel);border:1px solid var(--line);
+    border-radius:8px;padding:8px 11px;color:var(--ink);font:inherit;font-size:13px;outline:none}
+  input[type=search]:focus{border-color:var(--ink2)}
+  .chips{display:flex;gap:6px;flex-wrap:wrap}
+  .chip{background:var(--panel);border:1px solid var(--line);border-radius:99px;padding:6px 12px;
+    color:var(--ink2);cursor:pointer;font:inherit;font-size:12.5px}
+  .chip[aria-pressed="true"]{background:var(--ink);color:var(--page);border-color:var(--ink)}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(268px,1fr));gap:18px}
+  .card{display:flex;flex-direction:column;text-decoration:none;color:inherit;background:var(--panel);
+    border:1px solid var(--line);border-radius:14px;overflow:hidden;transition:border-color .12s,transform .12s}
+  .card:hover{border-color:var(--ink2);transform:translateY(-2px)}
+  .card:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+  .shot{position:relative;aspect-ratio:16/10;background:
+      radial-gradient(120% 120% at 20% 0%, color-mix(in srgb, var(--accent) 26%, transparent) 0%, transparent 60%),
+      var(--soft);
+    display:flex;align-items:center;justify-content:center;overflow:hidden;border-bottom:1px solid var(--line)}
+  .shot img{position:absolute;inset:0;z-index:1;width:100%;height:100%;object-fit:cover;object-position:top left}
+  .shot:has(img) .mark{display:none}
+  .mark{font-family:var(--mono);font-size:1.5rem;font-weight:600;letter-spacing:-.03em;
+    color:color-mix(in srgb, var(--accent) 70%, var(--ink2));opacity:.9}
+  .meta{padding:12px 14px 14px;display:flex;flex-direction:column;gap:6px}
+  .row1{display:flex;align-items:center;gap:8px}
+  .name{font-size:14px;font-weight:600;letter-spacing:-.01em}
+  .row1 .pill{margin-left:auto}
+  .row2{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--ink2);flex-wrap:wrap}
+  .who{display:inline-flex;align-items:center;gap:5px}
+  .who i{width:14px;height:14px;border-radius:99px;display:inline-block;box-shadow:inset 0 0 0 1px rgba(128,128,128,.25)}
+  .pending{color:var(--ink)}
+  .when{margin-left:auto;font-variant-numeric:tabular-nums}
+  .local-tag{position:absolute;z-index:2;bottom:8px;right:8px;font-size:10px;font-weight:600;letter-spacing:.03em;
+    text-transform:uppercase;background:var(--panel);color:var(--ink2);border:1px solid var(--line);
+    padding:2px 7px;border-radius:99px}
+  .empty{border:1px dashed var(--line);border-radius:14px;padding:48px;text-align:center;color:var(--ink2);font-size:14px}
+  .chip.group{margin-left:auto}
+  .owner-head{grid-column:1/-1;display:flex;align-items:center;gap:9px;margin:14px 0 -4px;
+    font-size:12px;font-weight:600;color:var(--ink2)}
+  .owner-head:first-child{margin-top:0}
+  .owner-head .n{font-weight:400}
+  .owner-head::after{content:"";flex:1;height:1px;background:var(--line)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Prototypes</h1>
+    <span class="count">6 prototypes · 4 people</span>
+    <a class="syslink" href="/protobilder-demo/system/">Design system →</a>
+  </header>
+  <p class="sub">Everything the team has built. Each card is a real contract — its own brand color,
+  its own audit receipt, its own preview. Add one with <code>/kit-start</code>; it appears here on the next build.</p>
+
+  <div class="bar">
+    <input type="search" id="q" placeholder="Search prototypes…" aria-label="Search prototypes">
+    <div class="chips" id="chips">
+      <button class="chip" data-f="all" aria-pressed="true">All</button>
+      <button class="chip" data-f="needs" aria-pressed="false">Needs attention</button>
+      <button class="chip" data-f="owner:Mia" aria-pressed="false">Mia</button>
+      <button class="chip" data-f="owner:Ogi" aria-pressed="false">Ogi</button>
+      <button class="chip" data-f="owner:Rae" aria-pressed="false">Rae</button>
+      <button class="chip" data-f="owner:unassigned" aria-pressed="false">unassigned</button>
+    </div>
+    <button class="chip group" id="groupBtn" aria-pressed="false">Group by person</button>
+  </div>
+
+  <div class="grid" id="grid">
+      <a class="card" href="/protobilder-demo/p/fieldnote/" data-owner="Ogi" data-name="fieldnote" data-status="pass">
+        <div class="shot" style="--accent:#4338ca"><img src="/protobilder-demo/thumbs/fieldnote.png" alt="" loading="lazy" onerror="this.remove()"><span class="mark">F</span></div>
+        <div class="meta">
+          <div class="row1"><span class="name">fieldnote</span><span class="pill ok">audited</span></div>
+          <div class="row2">
+            <span class="who"><i style="background:#4338ca"></i>Ogi</span>
+            <span>·</span><span>1 feature</span>
+            
+            <span class="when">2h ago</span>
+          </div>
+        </div>
+      </a>
+      <a class="card" href="/protobilder-demo/p/harvest-demo/" data-owner="Mia" data-name="harvest-demo" data-status="pass">
+        <div class="shot" style="--accent:#0f766e"><span class="mark">HD</span><span class="local-tag">local only</span></div>
+        <div class="meta">
+          <div class="row1"><span class="name">harvest-demo</span><span class="pill ok">audited</span></div>
+          <div class="row2">
+            <span class="who"><i style="background:#0f766e"></i>Mia</span>
+            <span>·</span><span>1 feature</span>
+            
+            <span class="when">2h ago</span>
+          </div>
+        </div>
+      </a>
+      <a class="card" href="/protobilder-demo/p/kanban/" data-owner="Ogi" data-name="kanban" data-status="pass">
+        <div class="shot" style="--accent:#000000"><img src="/protobilder-demo/thumbs/kanban.png" alt="" loading="lazy" onerror="this.remove()"><span class="mark">K</span></div>
+        <div class="meta">
+          <div class="row1"><span class="name">kanban</span><span class="pill ok">audited</span></div>
+          <div class="row2">
+            <span class="who"><i style="background:#000000"></i>Ogi</span>
+            <span>·</span><span>1 feature</span>
+            
+            <span class="when">2h ago</span>
+          </div>
+        </div>
+      </a>
+      <a class="card" href="/protobilder-demo/p/quickstart/" data-owner="Rae" data-name="quickstart" data-status="pass">
+        <div class="shot" style="--accent:#2563eb"><span class="mark">Q</span><span class="local-tag">local only</span></div>
+        <div class="meta">
+          <div class="row1"><span class="name">quickstart</span><span class="pill ok">audited</span></div>
+          <div class="row2">
+            <span class="who"><i style="background:#2563eb"></i>Rae</span>
+            <span>·</span><span>1 feature</span>
+            
+            <span class="when">2h ago</span>
+          </div>
+        </div>
+      </a>
+      <a class="card" href="/protobilder-demo/p/variants-demo/" data-owner="unassigned" data-name="variants-demo" data-status="pass">
+        <div class="shot" style="--accent:#2563eb"><span class="mark">VD</span><span class="local-tag">local only</span></div>
+        <div class="meta">
+          <div class="row1"><span class="name">variants-demo</span><span class="pill ok">audited</span></div>
+          <div class="row2">
+            <span class="who"><i style="background:#2563eb"></i>unassigned</span>
+            <span>·</span><span>1 feature</span>
+            
+            <span class="when">1d ago</span>
+          </div>
+        </div>
+      </a>
+      <a class="card" href="/protobilder-demo/p/walking-skeleton/" data-owner="Ogi" data-name="walking-skeleton" data-status="pass">
+        <div class="shot" style="--accent:#2563eb"><img src="/protobilder-demo/thumbs/walking-skeleton.png" alt="" loading="lazy" onerror="this.remove()"><span class="mark">WS</span></div>
+        <div class="meta">
+          <div class="row1"><span class="name">walking-skeleton</span><span class="pill ok">audited</span></div>
+          <div class="row2">
+            <span class="who"><i style="background:#2563eb"></i>Ogi</span>
+            <span>·</span><span>2 features</span>
+            <span>·</span><span class="pending">1 pending</span>
+            <span class="when">2h ago</span>
+          </div>
+        </div>
+      </a>
+  </div>
+  <div class="empty" id="none" hidden>Nothing matches.</div>
+
+  <footer>A view generated from the contracts in this repo — no database, no accounts.
+  Ownership, history and concurrency come from git.</footer>
+<script>
+  var q=document.getElementById("q"), chips=document.getElementById("chips"),
+      cards=[].slice.call(document.querySelectorAll(".card")), none=document.getElementById("none"), filter="all";
+  function apply(){
+    var term=(q.value||"").trim().toLowerCase(), shown=0;
+    cards.forEach(function(c){
+      var okF = filter==="all" ? true
+              : filter==="needs" ? (c.dataset.status!=="pass")
+              : c.dataset.owner === filter.slice(6);
+      var okQ = !term || c.dataset.name.indexOf(term)!==-1 || c.dataset.owner.toLowerCase().indexOf(term)!==-1;
+      var on = okF && okQ; c.hidden = !on; if(on) shown++;
+    });
+    none.hidden = shown!==0;
+    // A heading with nothing under it is noise — hide it with its group.
+    [].slice.call(grid.querySelectorAll(".owner-head")).forEach(function(h){
+      var any=false, n=h.nextElementSibling;
+      while(n && !n.classList.contains("owner-head")){ if(!n.hidden) any=true; n=n.nextElementSibling; }
+      h.hidden=!any;
+    });
+  }
+  // Grouping reorders the same cards under owner headings — one team, seen by person.
+  var grid=document.getElementById("grid"), groupBtn=document.getElementById("groupBtn"),
+      original=cards.slice(), grouped=false;
+  function regroup(){
+    [].slice.call(grid.querySelectorAll(".owner-head")).forEach(function(h){ h.remove(); });
+    if(!grouped){ original.forEach(function(c){ grid.appendChild(c); }); return; }
+    var byOwner={};
+    original.forEach(function(c){ (byOwner[c.dataset.owner] = byOwner[c.dataset.owner] || []).push(c); });
+    Object.keys(byOwner).sort().forEach(function(o){
+      var h=document.createElement("div"); h.className="owner-head";
+      h.innerHTML = "<span>"+o+"</span><span class='n'>"+byOwner[o].length+"</span>";
+      grid.appendChild(h);
+      byOwner[o].forEach(function(c){ grid.appendChild(c); });
+    });
+  }
+  groupBtn.addEventListener("click", function(){
+    grouped=!grouped; groupBtn.setAttribute("aria-pressed", String(grouped)); regroup(); apply();
+  });
+
+  q.addEventListener("input", apply);
+  chips.addEventListener("click", function(e){
+    var b=e.target.closest(".chip"); if(!b) return;
+    filter=b.dataset.f;
+    [].slice.call(chips.children).forEach(function(c){ c.setAttribute("aria-pressed", String(c===b)); });
+    apply();
+  });
+</script>
+</div>
+</body>
+</html>

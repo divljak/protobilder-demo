@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "button",
+  "type": "registry:ui",
+  "title": "Button",
+  "description": "Shared by 3 of 4 projects — the team's converged system.",
+  "dependencies": [
+    "class-variance-authority@0.7.1"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "components/ui/button.tsx",
+      "type": "registry:ui",
+      "target": "components/ui/button.tsx",
+      "content": "import * as React from \"react\";\nimport { cva, type VariantProps } from \"class-variance-authority\";\nimport { cn } from \"@/lib/utils\";\n\n// Canonical shadcn Button: a styled native button with cva variants. Every color is a\n// theme token (audit: tokens-only), no @radix import (audit: no-raw-radix).\nconst buttonVariants = cva(\n  \"inline-flex items-center justify-center gap-2 rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand disabled:pointer-events-none disabled:opacity-50\",\n  {\n    variants: {\n      variant: {\n        default: \"bg-brand text-brand-foreground hover:opacity-90\",\n        secondary: \"bg-muted text-foreground hover:bg-border\",\n        outline: \"border border-border bg-background text-foreground hover:bg-muted\",\n        ghost: \"text-foreground hover:bg-muted\",\n        destructive: \"bg-danger text-danger-foreground hover:opacity-90\",\n      },\n      size: {\n        default: \"h-9 px-4 py-2\",\n        sm: \"h-8 px-3\",\n        lg: \"h-10 px-6\",\n      },\n    },\n    defaultVariants: { variant: \"default\", size: \"default\" },\n  }\n);\n\nexport interface ButtonProps\n  extends React.ButtonHTMLAttributes<HTMLButtonElement>,\n    VariantProps<typeof buttonVariants> {}\n\nexport function Button({ className, variant, size, ...props }: ButtonProps) {\n  return <button className={cn(buttonVariants({ variant, size }), className)} {...props} />;\n}\n\nexport { buttonVariants };\n"
+    }
+  ]
+}

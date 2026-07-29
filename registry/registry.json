@@ -1,0 +1,292 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "team-ui",
+  "homepage": "/protobilder-demo/",
+  "items": [
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "badge",
+      "type": "registry:ui",
+      "title": "Badge",
+      "description": "Shared by 3 of 4 projects — the team's converged system.",
+      "dependencies": [
+        "class-variance-authority@0.7.1"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/badge.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/badge.tsx",
+          "content": "import * as React from \"react\";\nimport { cva, type VariantProps } from \"class-variance-authority\";\nimport { cn } from \"@/lib/utils\";\n\n// Badge — status in a glance. Semantic variants map to the semantic tokens, which stay\n// distinct from the brand on purpose: meaning must not ride on the accent color.\nconst badgeVariants = cva(\n  \"inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium\",\n  {\n    variants: {\n      variant: {\n        default: \"border border-border bg-muted text-muted-foreground\",\n        brand: \"bg-brand text-brand-foreground\",\n        success: \"bg-success-muted text-success\",\n        warning: \"bg-warning-muted text-warning\",\n        danger: \"bg-danger-muted text-danger\",\n      },\n    },\n    defaultVariants: { variant: \"default\" },\n  }\n);\n\nexport interface BadgeProps\n  extends React.HTMLAttributes<HTMLSpanElement>,\n    VariantProps<typeof badgeVariants> {}\n\nexport function Badge({ className, variant, ...props }: BadgeProps) {\n  return <span className={cn(badgeVariants({ variant }), className)} {...props} />;\n}\n\nexport { badgeVariants };\n"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "button",
+      "type": "registry:ui",
+      "title": "Button",
+      "description": "Shared by 3 of 4 projects — the team's converged system.",
+      "dependencies": [
+        "class-variance-authority@0.7.1"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/button.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/button.tsx",
+          "content": "import * as React from \"react\";\nimport { cva, type VariantProps } from \"class-variance-authority\";\nimport { cn } from \"@/lib/utils\";\n\n// Canonical shadcn Button: a styled native button with cva variants. Every color is a\n// theme token (audit: tokens-only), no @radix import (audit: no-raw-radix).\nconst buttonVariants = cva(\n  \"inline-flex items-center justify-center gap-2 rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand disabled:pointer-events-none disabled:opacity-50\",\n  {\n    variants: {\n      variant: {\n        default: \"bg-brand text-brand-foreground hover:opacity-90\",\n        secondary: \"bg-muted text-foreground hover:bg-border\",\n        outline: \"border border-border bg-background text-foreground hover:bg-muted\",\n        ghost: \"text-foreground hover:bg-muted\",\n        destructive: \"bg-danger text-danger-foreground hover:opacity-90\",\n      },\n      size: {\n        default: \"h-9 px-4 py-2\",\n        sm: \"h-8 px-3\",\n        lg: \"h-10 px-6\",\n      },\n    },\n    defaultVariants: { variant: \"default\", size: \"default\" },\n  }\n);\n\nexport interface ButtonProps\n  extends React.ButtonHTMLAttributes<HTMLButtonElement>,\n    VariantProps<typeof buttonVariants> {}\n\nexport function Button({ className, variant, size, ...props }: ButtonProps) {\n  return <button className={cn(buttonVariants({ variant, size }), className)} {...props} />;\n}\n\nexport { buttonVariants };\n"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "card",
+      "type": "registry:ui",
+      "title": "Card",
+      "description": "Shared by 3 of 4 projects — the team's converged system.",
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/card.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/card.tsx",
+          "content": "import * as React from \"react\";\nimport { cn } from \"@/lib/utils\";\n\n// Card — the surface every grouped view sits on. Plain elements; colors are theme\n// tokens only (audit: tokens-only). Radius comes from --radius-card.\nexport function Card({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {\n  return (\n    <div\n      className={cn(\"rounded-[var(--radius-card)] border border-border bg-background\", className)}\n      {...props}\n    />\n  );\n}\n\nexport function CardHeader({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {\n  return <div className={cn(\"flex flex-col gap-1 p-5 pb-0\", className)} {...props} />;\n}\n\nexport function CardTitle({ className, ...props }: React.HTMLAttributes<HTMLHeadingElement>) {\n  return <h3 className={cn(\"text-base font-semibold text-foreground\", className)} {...props} />;\n}\n\nexport function CardDescription({ className, ...props }: React.HTMLAttributes<HTMLParagraphElement>) {\n  return <p className={cn(\"text-sm text-muted-foreground\", className)} {...props} />;\n}\n\nexport function CardContent({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {\n  return <div className={cn(\"p-5\", className)} {...props} />;\n}\n\nexport function CardFooter({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {\n  return <div className={cn(\"flex items-center gap-2 p-5 pt-0\", className)} {...props} />;\n}\n"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "checkbox",
+      "type": "registry:ui",
+      "title": "Checkbox",
+      "description": "Shared by 3 of 4 projects — the team's converged system.",
+      "dependencies": [
+        "@base-ui-components/react@1.0.0-rc.0"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/checkbox.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/checkbox.tsx",
+          "content": "\"use client\";\nimport * as React from \"react\";\nimport { Checkbox as BaseCheckbox } from \"@base-ui-components/react/checkbox\";\nimport { cn } from \"@/lib/utils\";\n\n// shadcn-style Checkbox on the Base UI primitive. Colors are theme tokens only.\nexport function Checkbox({ className, ...props }: React.ComponentProps<typeof BaseCheckbox.Root>) {\n  return (\n    <BaseCheckbox.Root\n      className={cn(\n        \"flex h-4 w-4 shrink-0 items-center justify-center rounded-sm border border-border bg-background\",\n        \"transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand\",\n        \"data-[checked]:border-brand data-[checked]:bg-brand\",\n        \"disabled:cursor-not-allowed disabled:opacity-50\",\n        className\n      )}\n      {...props}\n    >\n      <BaseCheckbox.Indicator className=\"flex text-brand-foreground\">\n        <svg viewBox=\"0 0 12 12\" className=\"h-3 w-3\" fill=\"none\" aria-hidden=\"true\">\n          <path d=\"M2.5 6.5 5 9l4.5-5\" stroke=\"currentColor\" strokeWidth=\"1.8\" strokeLinecap=\"round\" strokeLinejoin=\"round\" />\n        </svg>\n      </BaseCheckbox.Indicator>\n    </BaseCheckbox.Root>\n  );\n}\n"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "dialog",
+      "type": "registry:ui",
+      "title": "Dialog",
+      "description": "Shared by 3 of 4 projects — the team's converged system.",
+      "dependencies": [
+        "@base-ui-components/react@1.0.0-rc.0"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/dialog.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/dialog.tsx",
+          "content": "\"use client\";\nimport * as React from \"react\";\nimport { Dialog as BaseDialog } from \"@base-ui-components/react/dialog\";\nimport { cn } from \"@/lib/utils\";\n\n// shadcn-style Dialog on the Base UI primitive. Backdrop and popup use theme tokens.\nexport const Dialog = BaseDialog.Root;\nexport const DialogTrigger = BaseDialog.Trigger;\nexport const DialogClose = BaseDialog.Close;\n\n// `container` lets a caller mount the popup inside a themed subtree (portals default\n// to <body>, which sits outside a container that is previewing a theme).\nexport function DialogContent({\n  className,\n  children,\n  container,\n  ...props\n}: React.ComponentProps<typeof BaseDialog.Popup> & {\n  container?: React.ComponentProps<typeof BaseDialog.Portal>[\"container\"];\n}) {\n  return (\n    <BaseDialog.Portal container={container}>\n      <BaseDialog.Backdrop className=\"fixed inset-0 bg-foreground/25\" />\n      <BaseDialog.Popup\n        className={cn(\n          \"fixed left-1/2 top-1/2 w-[min(28rem,calc(100vw-2rem))] -translate-x-1/2 -translate-y-1/2\",\n          \"rounded-[var(--radius-card)] border border-border bg-background p-5 shadow-xl\",\n          \"focus-visible:outline-none\",\n          className\n        )}\n        {...props}\n      >\n        {children}\n      </BaseDialog.Popup>\n    </BaseDialog.Portal>\n  );\n}\n\nexport function DialogTitle({ className, ...props }: React.ComponentProps<typeof BaseDialog.Title>) {\n  return <BaseDialog.Title className={cn(\"text-base font-semibold text-foreground\", className)} {...props} />;\n}\n\nexport function DialogDescription({ className, ...props }: React.ComponentProps<typeof BaseDialog.Description>) {\n  return <BaseDialog.Description className={cn(\"mt-1 text-sm text-muted-foreground\", className)} {...props} />;\n}\n"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "input",
+      "type": "registry:ui",
+      "title": "Input",
+      "description": "Shared by 3 of 4 projects — the team's converged system.",
+      "dependencies": [
+        "@base-ui-components/react@1.0.0-rc.0"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/input.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/input.tsx",
+          "content": "import * as React from \"react\";\nimport { Input as BaseInput } from \"@base-ui-components/react/input\";\nimport { cn } from \"@/lib/utils\";\n\n// shadcn-style Input on the Base UI primitive. Every color is a theme token\n// (audit: tokens-only); no @radix import (audit: no-raw-radix).\nexport function Input({ className, ...props }: React.ComponentProps<typeof BaseInput>) {\n  return (\n    <BaseInput\n      className={cn(\n        \"h-9 w-full rounded-md border border-border bg-background px-3 py-1 text-sm text-foreground\",\n        \"placeholder:text-muted-foreground\",\n        \"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand\",\n        \"disabled:cursor-not-allowed disabled:opacity-50\",\n        \"data-[invalid]:border-danger data-[invalid]:focus-visible:ring-danger\",\n        className\n      )}\n      {...props}\n    />\n  );\n}\n"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "label",
+      "type": "registry:ui",
+      "title": "Label",
+      "description": "Shared by 3 of 4 projects — the team's converged system.",
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/label.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/label.tsx",
+          "content": "import * as React from \"react\";\nimport { cn } from \"@/lib/utils\";\n\n// Label — a plain native label (already accessible when bound with htmlFor).\n// Colors are theme tokens only (audit: tokens-only).\nexport function Label({ className, ...props }: React.LabelHTMLAttributes<HTMLLabelElement>) {\n  return (\n    <label\n      className={cn(\"text-sm font-medium leading-none text-foreground\", className)}\n      {...props}\n    />\n  );\n}\n"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "radio-group",
+      "type": "registry:ui",
+      "title": "RadioGroup",
+      "description": "Shared by 3 of 4 projects — the team's converged system.",
+      "dependencies": [
+        "@base-ui-components/react@1.0.0-rc.0"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/radio-group.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/radio-group.tsx",
+          "content": "\"use client\";\nimport * as React from \"react\";\nimport { RadioGroup as BaseRadioGroup } from \"@base-ui-components/react/radio-group\";\nimport { Radio as BaseRadio } from \"@base-ui-components/react/radio\";\nimport { cn } from \"@/lib/utils\";\n\n// shadcn-style RadioGroup on the Base UI primitives. Colors are theme tokens only.\nexport function RadioGroup({ className, ...props }: React.ComponentProps<typeof BaseRadioGroup>) {\n  return <BaseRadioGroup className={cn(\"flex flex-col gap-2\", className)} {...props} />;\n}\n\nexport function Radio({ className, ...props }: React.ComponentProps<typeof BaseRadio.Root>) {\n  return (\n    <BaseRadio.Root\n      className={cn(\n        \"flex h-4 w-4 shrink-0 items-center justify-center rounded-full border border-border bg-background\",\n        \"transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand\",\n        \"data-[checked]:border-brand data-[checked]:bg-brand\",\n        \"disabled:cursor-not-allowed disabled:opacity-50\",\n        className\n      )}\n      {...props}\n    >\n      <BaseRadio.Indicator className=\"h-1.5 w-1.5 rounded-full bg-brand-foreground\" />\n    </BaseRadio.Root>\n  );\n}\n"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "select",
+      "type": "registry:ui",
+      "title": "Select",
+      "description": "Shared by 3 of 4 projects — the team's converged system.",
+      "dependencies": [
+        "@base-ui-components/react@1.0.0-rc.0"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/select.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/select.tsx",
+          "content": "\"use client\";\nimport * as React from \"react\";\nimport { Select as BaseSelect } from \"@base-ui-components/react/select\";\nimport { cn } from \"@/lib/utils\";\n\n// shadcn-style Select on the Base UI primitive. Popup colors are theme tokens only.\nexport const Select = BaseSelect.Root;\n\nexport function SelectTrigger({\n  className,\n  placeholder,\n  ...props\n}: React.ComponentProps<typeof BaseSelect.Trigger> & { placeholder?: string }) {\n  return (\n    <BaseSelect.Trigger\n      className={cn(\n        \"flex h-9 w-full items-center justify-between gap-2 rounded-md border border-border bg-background px-3 text-sm text-foreground\",\n        \"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand\",\n        \"disabled:cursor-not-allowed disabled:opacity-50\",\n        className\n      )}\n      {...props}\n    >\n      {/* Base UI renders the value via a function; fall back to the placeholder. */}\n      <BaseSelect.Value>\n        {(value: unknown) =>\n          value === null || value === undefined || value === \"\" ? (\n            <span className=\"text-muted-foreground\">{placeholder}</span>\n          ) : (\n            String(value)\n          )\n        }\n      </BaseSelect.Value>\n      <BaseSelect.Icon className=\"text-muted-foreground\">\n        <svg viewBox=\"0 0 12 12\" className=\"h-3 w-3\" fill=\"none\" aria-hidden=\"true\">\n          <path d=\"M3 4.5 6 7.5 9 4.5\" stroke=\"currentColor\" strokeWidth=\"1.5\" strokeLinecap=\"round\" strokeLinejoin=\"round\" />\n        </svg>\n      </BaseSelect.Icon>\n    </BaseSelect.Trigger>\n  );\n}\n\n// `container` lets a caller mount the popup inside a themed subtree (the Theme Studio\n// previews a theme on a container, and portals default to <body>, outside it).\nexport function SelectContent({\n  className,\n  children,\n  container,\n  ...props\n}: React.ComponentProps<typeof BaseSelect.Popup> & {\n  container?: React.ComponentProps<typeof BaseSelect.Portal>[\"container\"];\n}) {\n  return (\n    <BaseSelect.Portal container={container}>\n      <BaseSelect.Positioner sideOffset={6}>\n        <BaseSelect.Popup\n          className={cn(\n            \"min-w-[var(--anchor-width)] rounded-md border border-border bg-background p-1 shadow-lg\",\n            className\n          )}\n          {...props}\n        >\n          {children}\n        </BaseSelect.Popup>\n      </BaseSelect.Positioner>\n    </BaseSelect.Portal>\n  );\n}\n\nexport function SelectItem({ className, children, ...props }: React.ComponentProps<typeof BaseSelect.Item>) {\n  return (\n    <BaseSelect.Item\n      className={cn(\n        \"flex cursor-default items-center justify-between gap-2 rounded-sm px-2 py-1.5 text-sm text-foreground\",\n        \"data-[highlighted]:bg-muted\",\n        className\n      )}\n      {...props}\n    >\n      <BaseSelect.ItemText>{children}</BaseSelect.ItemText>\n      <BaseSelect.ItemIndicator className=\"text-brand\">\n        <svg viewBox=\"0 0 12 12\" className=\"h-3 w-3\" fill=\"none\" aria-hidden=\"true\">\n          <path d=\"M2.5 6.5 5 9l4.5-5\" stroke=\"currentColor\" strokeWidth=\"1.8\" strokeLinecap=\"round\" strokeLinejoin=\"round\" />\n        </svg>\n      </BaseSelect.ItemIndicator>\n    </BaseSelect.Item>\n  );\n}\n"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "separator",
+      "type": "registry:ui",
+      "title": "Separator",
+      "description": "Shared by 3 of 4 projects — the team's converged system.",
+      "dependencies": [
+        "@base-ui-components/react@1.0.0-rc.0"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/separator.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/separator.tsx",
+          "content": "import * as React from \"react\";\nimport { Separator as BaseSeparator } from \"@base-ui-components/react/separator\";\nimport { cn } from \"@/lib/utils\";\n\n// shadcn-style Separator on the Base UI primitive (it carries the right ARIA role).\nexport function Separator({ className, ...props }: React.ComponentProps<typeof BaseSeparator>) {\n  return (\n    <BaseSeparator\n      className={cn(\"bg-border data-[orientation=vertical]:w-px data-[orientation=vertical]:self-stretch h-px w-full\", className)}\n      {...props}\n    />\n  );\n}\n"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "switch",
+      "type": "registry:ui",
+      "title": "Switch",
+      "description": "Shared by 3 of 4 projects — the team's converged system.",
+      "dependencies": [
+        "@base-ui-components/react@1.0.0-rc.0"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/switch.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/switch.tsx",
+          "content": "\"use client\";\nimport * as React from \"react\";\nimport { Switch as BaseSwitch } from \"@base-ui-components/react/switch\";\nimport { cn } from \"@/lib/utils\";\n\n// shadcn-style Switch built on the Base UI primitive (§8 default). No @radix import.\nexport function Switch({ className, ...props }: React.ComponentProps<typeof BaseSwitch.Root>) {\n  return (\n    <BaseSwitch.Root\n      className={cn(\n        \"relative inline-flex h-5 w-9 shrink-0 items-center rounded-full bg-muted transition-colors data-[checked]:bg-brand\",\n        className\n      )}\n      {...props}\n    >\n      <BaseSwitch.Thumb className=\"ml-0.5 h-4 w-4 rounded-full bg-background shadow transition-transform data-[checked]:translate-x-4\" />\n    </BaseSwitch.Root>\n  );\n}\n"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "tabs",
+      "type": "registry:ui",
+      "title": "Tabs",
+      "description": "Shared by 3 of 4 projects — the team's converged system.",
+      "dependencies": [
+        "@base-ui-components/react@1.0.0-rc.0"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/tabs.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/tabs.tsx",
+          "content": "\"use client\";\nimport * as React from \"react\";\nimport { Tabs as BaseTabs } from \"@base-ui-components/react/tabs\";\nimport { cn } from \"@/lib/utils\";\n\n// shadcn-style Tabs on the Base UI primitive. Colors are theme tokens only.\nexport const Tabs = BaseTabs.Root;\n\nexport function TabsList({ className, ...props }: React.ComponentProps<typeof BaseTabs.List>) {\n  return (\n    <BaseTabs.List\n      className={cn(\"inline-flex items-center gap-1 rounded-md bg-muted p-1\", className)}\n      {...props}\n    />\n  );\n}\n\nexport function TabsTab({ className, ...props }: React.ComponentProps<typeof BaseTabs.Tab>) {\n  return (\n    <BaseTabs.Tab\n      className={cn(\n        \"rounded-sm px-3 py-1.5 text-sm font-medium text-muted-foreground transition-colors\",\n        \"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand\",\n        \"data-[selected]:bg-background data-[selected]:text-foreground data-[selected]:shadow-sm\",\n        className\n      )}\n      {...props}\n    />\n  );\n}\n\nexport function TabsPanel({ className, ...props }: React.ComponentProps<typeof BaseTabs.Panel>) {\n  return <BaseTabs.Panel className={cn(\"mt-3 text-sm text-foreground\", className)} {...props} />;\n}\n"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "textarea",
+      "type": "registry:ui",
+      "title": "Textarea",
+      "description": "Shared by 3 of 4 projects — the team's converged system.",
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/textarea.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/textarea.tsx",
+          "content": "import * as React from \"react\";\nimport { cn } from \"@/lib/utils\";\n\n// Textarea — a styled native element (Base UI ships no textarea primitive; a native\n// one is already accessible). Colors are theme tokens only (audit: tokens-only).\nexport function Textarea({ className, ...props }: React.TextareaHTMLAttributes<HTMLTextAreaElement>) {\n  return (\n    <textarea\n      className={cn(\n        \"min-h-20 w-full rounded-md border border-border bg-background px-3 py-2 text-sm text-foreground\",\n        \"placeholder:text-muted-foreground\",\n        \"focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand\",\n        \"disabled:cursor-not-allowed disabled:opacity-50\",\n        className\n      )}\n      {...props}\n    />\n  );\n}\n"
+        }
+      ]
+    },
+    {
+      "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+      "name": "tooltip",
+      "type": "registry:ui",
+      "title": "Tooltip",
+      "description": "Shared by 3 of 4 projects — the team's converged system.",
+      "dependencies": [
+        "@base-ui-components/react@1.0.0-rc.0"
+      ],
+      "registryDependencies": [
+        "utils"
+      ],
+      "files": [
+        {
+          "path": "components/ui/tooltip.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/tooltip.tsx",
+          "content": "\"use client\";\nimport * as React from \"react\";\nimport { Tooltip as BaseTooltip } from \"@base-ui-components/react/tooltip\";\nimport { cn } from \"@/lib/utils\";\n\n// shadcn-style Tooltip on the Base UI primitive. Colors are theme tokens only.\nexport const TooltipProvider = BaseTooltip.Provider;\nexport const Tooltip = BaseTooltip.Root;\nexport const TooltipTrigger = BaseTooltip.Trigger;\n\n// `container` lets a caller mount the popup inside a themed subtree (portals default\n// to <body>, which sits outside a container that is previewing a theme).\nexport function TooltipContent({\n  className,\n  children,\n  container,\n  ...props\n}: React.ComponentProps<typeof BaseTooltip.Popup> & {\n  container?: React.ComponentProps<typeof BaseTooltip.Portal>[\"container\"];\n}) {\n  return (\n    <BaseTooltip.Portal container={container}>\n      <BaseTooltip.Positioner sideOffset={6}>\n        <BaseTooltip.Popup\n          className={cn(\n            \"rounded-md bg-foreground px-2 py-1 text-xs font-medium text-background shadow-md\",\n            className\n          )}\n          {...props}\n        >\n          {children}\n        </BaseTooltip.Popup>\n      </BaseTooltip.Positioner>\n    </BaseTooltip.Portal>\n  );\n}\n"
+        }
+      ]
+    }
+  ]
+}

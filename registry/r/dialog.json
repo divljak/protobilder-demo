@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "dialog",
+  "type": "registry:ui",
+  "title": "Dialog",
+  "description": "Shared by 3 of 4 projects — the team's converged system.",
+  "dependencies": [
+    "@base-ui-components/react@1.0.0-rc.0"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "components/ui/dialog.tsx",
+      "type": "registry:ui",
+      "target": "components/ui/dialog.tsx",
+      "content": "\"use client\";\nimport * as React from \"react\";\nimport { Dialog as BaseDialog } from \"@base-ui-components/react/dialog\";\nimport { cn } from \"@/lib/utils\";\n\n// shadcn-style Dialog on the Base UI primitive. Backdrop and popup use theme tokens.\nexport const Dialog = BaseDialog.Root;\nexport const DialogTrigger = BaseDialog.Trigger;\nexport const DialogClose = BaseDialog.Close;\n\n// `container` lets a caller mount the popup inside a themed subtree (portals default\n// to <body>, which sits outside a container that is previewing a theme).\nexport function DialogContent({\n  className,\n  children,\n  container,\n  ...props\n}: React.ComponentProps<typeof BaseDialog.Popup> & {\n  container?: React.ComponentProps<typeof BaseDialog.Portal>[\"container\"];\n}) {\n  return (\n    <BaseDialog.Portal container={container}>\n      <BaseDialog.Backdrop className=\"fixed inset-0 bg-foreground/25\" />\n      <BaseDialog.Popup\n        className={cn(\n          \"fixed left-1/2 top-1/2 w-[min(28rem,calc(100vw-2rem))] -translate-x-1/2 -translate-y-1/2\",\n          \"rounded-[var(--radius-card)] border border-border bg-background p-5 shadow-xl\",\n          \"focus-visible:outline-none\",\n          className\n        )}\n        {...props}\n      >\n        {children}\n      </BaseDialog.Popup>\n    </BaseDialog.Portal>\n  );\n}\n\nexport function DialogTitle({ className, ...props }: React.ComponentProps<typeof BaseDialog.Title>) {\n  return <BaseDialog.Title className={cn(\"text-base font-semibold text-foreground\", className)} {...props} />;\n}\n\nexport function DialogDescription({ className, ...props }: React.ComponentProps<typeof BaseDialog.Description>) {\n  return <BaseDialog.Description className={cn(\"mt-1 text-sm text-muted-foreground\", className)} {...props} />;\n}\n"
+    }
+  ]
+}

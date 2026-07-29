@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "label",
+  "type": "registry:ui",
+  "title": "Label",
+  "description": "Shared by 3 of 4 projects — the team's converged system.",
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "components/ui/label.tsx",
+      "type": "registry:ui",
+      "target": "components/ui/label.tsx",
+      "content": "import * as React from \"react\";\nimport { cn } from \"@/lib/utils\";\n\n// Label — a plain native label (already accessible when bound with htmlFor).\n// Colors are theme tokens only (audit: tokens-only).\nexport function Label({ className, ...props }: React.LabelHTMLAttributes<HTMLLabelElement>) {\n  return (\n    <label\n      className={cn(\"text-sm font-medium leading-none text-foreground\", className)}\n      {...props}\n    />\n  );\n}\n"
+    }
+  ]
+}
